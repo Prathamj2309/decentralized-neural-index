@@ -1,3 +1,7 @@
 sentence-transformers
 numpy
 torch
+pandas
+datasets
+rank_bm25
+faiss-cpu
