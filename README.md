@@ -1,18 +1,49 @@
-\# Decentralized Semantic Indexing Protocol
+# Semantic Metadata Protocol for Hybrid Search
 
+## Overview
 
+This project explores a decentralized search architecture in which web pages publish quantized semantic embeddings as metadata. These embeddings enable efficient hybrid retrieval by combining lexical ranking (BM25) with semantic similarity scoring.
 
-\## Abstract
+The goal is to evaluate whether publisher-provided embeddings can improve retrieval quality while reducing query-time computation.
 
-This project explores a decentralized architecture for Neural Information Retrieval. Instead of search engines computing vectors for the entire web (centralized, expensive), we propose a protocol where web servers provide pre-computed, quantized semantic vectors via meta-tags.
+## Architecture
 
+The system consists of:
 
+1. Offline Index Builder
+   - Computes normalized sentence embeddings for documents
+   - Stores both float32 and int8-quantized versions
 
-\## Goals
+2. Lexical Index
+   - BM25 inverted index over the document corpus
 
-1\.  \*\*Feasibility:\*\* Identify a Transformer model small enough (<50MB) to run in a browser or on edge devices.
+3. Hybrid Retrieval
+   - Step 1: BM25 retrieves top-k candidates
+   - Step 2: Query embedding is computed
+   - Step 3: Precomputed document embeddings are used for reranking
+   - Final score is a weighted combination of lexical and semantic scores
 
-2\.  \*\*Protocol:\*\* Define the standardized `<meta name="neural-index">` format.
+## Experiments
 
-3\.  \*\*Verification:\*\* Algorithm to detect "Semantic SEO Spam" (mismatched vectors).
+We evaluate:
 
+- BM25 baseline
+- Hybrid (float32 embeddings)
+- Hybrid (int8 quantized embeddings)
+
+Metrics include:
+- Query latency
+- Storage footprint
+- Ranking quality (planned NDCG/MRR)
+
+## Key Findings (Preliminary)
+
+- Precomputed embeddings eliminate document encoding at query time
+- Int8 quantization reduces storage by ~4x
+- Semantic reranking improves relevance for ambiguous or synonym-heavy queries
+
+## Future Work
+
+- Formal evaluation using ranking metrics
+- Adversarial embedding analysis
+- Protocol standardization for web metadata publishing
