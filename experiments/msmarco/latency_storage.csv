@@ -1,0 +1,2 @@
+timestamp,model,num_queries,num_passages,query_encode_ms,bm25_ms,semantic_float_ms,semantic_int8_ms,sorting_ms,full_pipeline_ms,float_size_MB,int8_size_MB,compression_ratio,space_saved_percent
+2026-02-12T20:17:55.962218,multi-qa-MiniLM-L6-cos-v1,696,5715,7.097998706238537,0.5360257174738083,0.030334196394662664,0.01784195397892196,0.04007686714002135,7.7253254302763965,8.37158203125,2.0928955078125,4.0,75.0
