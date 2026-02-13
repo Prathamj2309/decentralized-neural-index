@@ -5,4 +5,5 @@ pandas
 datasets
 rank_bm25
 faiss-cpu
-optimum[exporters,onnxruntime]
+matplotlib
+datasets
